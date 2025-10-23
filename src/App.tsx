@@ -1,7 +1,17 @@
 import { useState } from "react"
 import { FaRegUserCircle } from "react-icons/fa";
+import ContentSections from "./components/ContentSections";
 function App() {
 const [isLoggedIn,setIsLoggedIn] = useState(false) 
+const images = [
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSvXoNTBYMtV_d_kL-KECFIzBEhETK2Gt4QdJz8yIlIoB2t3HK",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSvXoNTBYMtV_d_kL-KECFIzBEhETK2Gt4QdJz8yIlIoB2t3HK",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSvXoNTBYMtV_d_kL-KECFIzBEhETK2Gt4QdJz8yIlIoB2t3HK",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSvXoNTBYMtV_d_kL-KECFIzBEhETK2Gt4QdJz8yIlIoB2t3HK",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSvXoNTBYMtV_d_kL-KECFIzBEhETK2Gt4QdJz8yIlIoB2t3HK",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSvXoNTBYMtV_d_kL-KECFIzBEhETK2Gt4QdJz8yIlIoB2t3HK",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSvXoNTBYMtV_d_kL-KECFIzBEhETK2Gt4QdJz8yIlIoB2t3HK",
+  ];
   return (
     <>
   <nav className="bg-white shadow-md px-6 py-3 flex items-center justify-between">
@@ -42,6 +52,10 @@ const [isLoggedIn,setIsLoggedIn] = useState(false)
       }
       
     </nav>
+    <div className="space-y-8">
+        <ContentSections title="Newly Released" images={images} />
+        <ContentSections title="Most Popular" images={images} />
+      </div>
     </>
   )
 }
