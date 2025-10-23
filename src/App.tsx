@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { FaRegUserCircle } from "react-icons/fa";
-import GameSections from "./componenets/GameSections";
 function App() {
 const [isLoggedIn,setIsLoggedIn] = useState(false) 
   return (
@@ -43,7 +42,6 @@ const [isLoggedIn,setIsLoggedIn] = useState(false)
       }
       
     </nav>
-   <GameSections/>
     </>
   )
 }
