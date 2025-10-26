@@ -53,7 +53,7 @@ const { isLoggedIn, username } = useSelector((state) => state.auth);
           <FaRegUserCircle size={40} className="cursor-pointer text-yellow-300" />
           <button
             onClick={() => dispatch(logout())}
-            className="text-gray-700 hover:text-yellow-800 font-medium cursor-pointer"
+            className="text-gray-700 py-2 px-2 rounded-full hover:bg-yellow-800 hover:text-white font-medium cursor-pointer"
           >
             Logout
           </button>
