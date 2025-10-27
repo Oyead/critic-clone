@@ -78,7 +78,7 @@ navigate("/")
 
           <button
             type="submit"
-            className="w-full bg-yellow-500 text-white font-semibold py-2 rounded-lg hover:bg-yellow-600 transition duration-200"
+            className="w-full bg-yellow-500 text-white font-semibold py-2 rounded-lg hover:bg-yellow-600 transition duration-200 cursor-pointer"
           >
             Register
           </button>
