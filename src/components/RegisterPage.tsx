@@ -8,19 +8,48 @@ const navigate=useNavigate()
 const [username,setUserName] = useState("")
 const [email,setEmail] = useState("")
 const [password,setPassword] = useState("")
+const [alert, setAlert] = useState<{ msg: string; type: "success" | "error" | "" }>({ msg: "", type: "" });
+const showAlert = (msg: string, type: "success" | "error") => {
+    setAlert({ msg, type });
+    setTimeout(() => setAlert({ msg: "", type: "" }), 3000);
+  };
 const handleSubmit= (e:React.SyntheticEvent) =>{
     e.preventDefault();
+
 if (!username || !email || !password){
-    alert ("All fields are required")
+    showAlert("All fields are required","error")
     return
 }
+const emailRegex= /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if (!emailRegex.test(email)) {
+      showAlert("Invalid email format.", "error");
+      return;
+    }
+if (password.length < 6) {
+      showAlert("Password must be at least 6 characters long.", "error");
+      return;
+    }
+     const existingUser = JSON.parse(localStorage.getItem("user") || "null");
+  if (existingUser && existingUser.email === email) {
+    showAlert("User already registered with this email.", "error");
+    return;
+  }
+ const userData = { username, email, password };
+    localStorage.setItem("user", JSON.stringify(userData));
+    dispatch(login({ username }));
 
-const userData = {username,email,password}
+    showAlert("User registered successfully!", "success");
+
+    setUserName("");
+    setEmail("");
+    setPassword("");
+
+    setTimeout(() => navigate("/"), 1000);
 
 localStorage.setItem("user",JSON.stringify(userData))
 dispatch(login({ username }));
 
-alert("User registered successfully");
+showAlert("User registered successfully","success");
     setUserName("");
     setEmail("");
     setPassword("");
@@ -33,7 +62,17 @@ navigate("/")
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
           Register
         </h2>
-
+         {alert.msg && (
+          <div
+            className={`mb-4 rounded-lg px-4 py-2 text-sm font-medium ${
+              alert.type === "success"
+                ? "bg-green-100 text-green-800"
+                : "bg-red-100 text-red-800"
+            }`}
+          >
+            {alert.msg}
+          </div>
+        )}
         <form className="space-y-5"
          onSubmit={handleSubmit}
          >
