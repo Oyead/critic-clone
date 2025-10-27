@@ -43,7 +43,7 @@ const ContentSections: React.FC<GameSectionProps> = ({ title, images }) => {
         {images.map((src, index) => (
           <div
             key={index}
-            className="shrink-0 w-[280px] h-[180px] sm:w-[320px] sm:h-[200px] md:w-[380px] md:h-[240px] lg:w-[420px] lg:h-[260px] rounded-2xl overflow-hidden shadow-lg bg-gray-100 relative cursor-pointer group"
+            className="shrink-0 w-[280px] h-[180px] sm:w-[320px] sm:h-[200px] md:w-[380px] md:h-60 lg:w-[420px] lg:h-[260px] rounded-2xl overflow-hidden shadow-lg bg-gray-100 relative cursor-pointer group"
           >
             <img
               src={src}
