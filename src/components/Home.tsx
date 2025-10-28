@@ -1,21 +1,30 @@
-import Navbar from "./Navbar"
-import ContentSections from "./ContentSections"
+import { useEffect, useState } from "react";
+import ContentSections from "./ContentSections";
+import { getHighestRated, getNewlyReleased } from "../api";
+
 function Home() {
-  const images = [
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSvXoNTBYMtV_d_kL-KECFIzBEhETK2Gt4QdJz8yIlIoB2t3HK",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSvXoNTBYMtV_d_kL-KECFIzBEhETK2Gt4QdJz8yIlIoB2t3HK",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSvXoNTBYMtV_d_kL-KECFIzBEhETK2Gt4QdJz8yIlIoB2t3HK",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSvXoNTBYMtV_d_kL-KECFIzBEhETK2Gt4QdJz8yIlIoB2t3HK",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSvXoNTBYMtV_d_kL-KECFIzBEhETK2Gt4QdJz8yIlIoB2t3HK",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSvXoNTBYMtV_d_kL-KECFIzBEhETK2Gt4QdJz8yIlIoB2t3HK",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSvXoNTBYMtV_d_kL-KECFIzBEhETK2Gt4QdJz8yIlIoB2t3HK",
-  ];
+  const [highestRated, setHighestRated] = useState<{ name: string; image: string }[]>([]);
+  const [newlyReleased, setNewlyReleased] = useState<{ name: string; image: string }[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const [ratedGames, newGames] = await Promise.all([
+        getHighestRated(),
+        getNewlyReleased(),
+      ]);
+      setHighestRated(ratedGames);
+      setNewlyReleased(newGames);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
-    <ContentSections title="Newly Released" images={images} />
-    <ContentSections title="Most Popular" images={images} />
+      <ContentSections title="Newly Released" images={newlyReleased} />
+      <ContentSections title="Highest Rated" images={highestRated} />
     </>
-  )
+  );
 }
 
-export default Home
+export default Home;
