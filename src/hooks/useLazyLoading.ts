@@ -12,7 +12,7 @@ export function useLazyLoading() {
           observer.disconnect();
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 }
     );
 
     if (ref.current) observer.observe(ref.current);
