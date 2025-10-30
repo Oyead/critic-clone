@@ -16,7 +16,7 @@ const ContentSections: React.FC<GameSectionProps> = ({ title, images }) => {
 
   const scroll = (dir: "left" | "right") => {
     if (scrollRef.current)
-      scrollRef.current.scrollBy({ left: dir === "left" ? -320 : 320, behavior: "smooth" });
+      scrollRef.current.scrollBy({ left: dir === "left" ? -400 : 400, behavior: "smooth" });
   };
 
   return (
