@@ -15,8 +15,9 @@ export const getHighestRated = async () => {
 
 // Get newly released games
 export const getNewlyReleased = async () => {
+  const today=new Date().toISOString().split("T")[0]
   const res = await axios.get(
-    `${API_BASE}/games?key=${API_KEY}&dates=2024-01-01,2025-12-31&ordering=-released&page_size=10`
+    `${API_BASE}/games?key=${API_KEY}&dates=2024-01-01,${today}&ordering=-released&page_size=10`
   );
   return res.data.results
     .filter((game: any) => game.background_image)
