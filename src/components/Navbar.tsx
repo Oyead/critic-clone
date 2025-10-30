@@ -4,11 +4,30 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import type { RootState } from "../store/store";
+import axios from "axios";
 function Navbar() {
   const [dropList, setDropList] = useState(false);
+  const [query,setQuery]=useState("")
+  const [results,setResults]=useState<any[]>([])
+  const [showResults,setShowResults]=useState(false)
+  const API_BASE = import.meta.env.VITE_APP_API_URL;
+  const API_KEY = import.meta.env.VITE_RAWG_API_KEY;
   const dispatch = useDispatch();
   const { isLoggedIn, username } = useSelector((state: RootState) => state.auth);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  useEffect(()=>{
+    const timeout=setTimeout(async() => {
+      if(query.trim().length > 2 ){
+        const res = await axios.get(`${API_BASE}/games?key=${API_KEY}&search=${query}&page_size=5`)
+        setResults(res.data.results || [])
+        setShowResults(true)
+      }else{
+        setResults([])
+        setShowResults(false)
+      }
+    }, 400);
+    return ()=>clearTimeout(timeout)
+  },[query])
   useEffect(() => {
     function handleClickOutside(event:MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -46,12 +65,36 @@ function Navbar() {
       </div>
 
       {/* Middle: Search */}
-      <div className="hidden md:flex flex-1 justify-center mx-6">
+      <div className="hidden md:flex flex-1 justify-center mx-6 relative">
         <input
           type="text"
           placeholder="Search..."
+          value={query}
+          onChange={(e)=>setQuery(e.target.value)}
           className="w-[30%] lg:w-[60%] border border-gray-300 rounded-3xl px-4 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
         />
+        {showResults && results.length > 0 && (
+    <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-white border border-gray-200 shadow-lg rounded-lg w-[60%] max-h-80 overflow-y-auto z-50">
+      {results.map((game) => (
+        <Link
+          key={game.id}
+          to={`/game/${game.id}`}
+          className="flex items-center gap-3 p-2 hover:bg-gray-100 cursor-pointer"
+          onClick={() => {
+            setQuery("");
+            setShowResults(false);
+          }}
+        >
+          <img
+            src={game.background_image}
+            alt={game.name}
+            className="w-10 h-10 rounded object-cover"
+          />
+          <p className="text-gray-800 text-sm font-medium">{game.name}</p>
+        </Link>
+      ))}
+    </div>
+  )}
       </div>
 
       {/* Right: Auth buttons */}
