@@ -123,12 +123,16 @@ function Navbar() {
 
             {dropList && (
               <div className="absolute top-full right-0 mt-1 bg-gray-100 rounded-lg shadow-lg w-40 p-2 z-50">
+                <Link to="/profile">
                 <p className="text-gray-700 hover:text-yellow-800 cursor-pointer py-1">
                   Profile
                 </p>
+                </Link>
+                <Link to="/settings">
                 <p className="text-gray-700 hover:text-yellow-800 cursor-pointer py-1">
                   Settings
                 </p>
+                </Link>
                 <button
                   onClick={() => dispatch(logout())}
                   className="w-full text-left text-gray-700 hover:text-red-600 py-1 cursor-pointer"
