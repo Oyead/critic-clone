@@ -6,6 +6,8 @@ import RegisterPage from "./components/RegisterPage";
 import Profile from "./components/Profile";
 import GameDetails from "./components/GameDetails"
 import ProtectedRoute from './ProtectedRoute';
+import MyReviews from "./components/MyReviews";
+import Explore from "./components/explore";
 function App() {
   return (
     <>
@@ -14,13 +16,22 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
+      <Route path="/explore" element={<Explore/>} />
       <Route path="/game/:id" element={<GameDetails/>} />
-
+      
       <Route
           path="/profile"
           element={
             <ProtectedRoute>
               <Profile />
+            </ProtectedRoute>
+          }
+        />
+              <Route
+          path="/reviews"
+          element={
+            <ProtectedRoute>
+              <MyReviews />
             </ProtectedRoute>
           }
         />
