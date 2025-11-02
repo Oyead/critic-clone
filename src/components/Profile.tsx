@@ -46,26 +46,24 @@ function Profile() {
             className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
           />
         ) : (
-          <FaRegUserCircle size={96} className="mx-auto text-yellow-400 mb-4" />
+          <FaRegUserCircle size={96} className="mx-auto text-[#1ac5b0] mb-4" />
         )}
         <h2 className="text-xl font-semibold">{username}</h2>
         <p className="text-gray-600">{email}</p>
         <p className="text-gray-500 mt-2">{bio}</p>
         <button
           onClick={() => setShowModal(true)}
-          className="mt-4 bg-yellow-400 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 cursor-pointer"
+          className="mt-4 bg-[#1ac5b0] text-white px-4 py-2 rounded-lg hover:bg-[#339989] cursor-pointer"
         >
           Edit Profile
         </button>
       </div>
 
-      {/* Modal */}
+
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-transparent bg-opacity-40">
           <div className="bg-white rounded-xl p-6 w-full max-w-md shadow-lg">
             <h3 className="text-lg font-semibold mb-4">Edit Profile</h3>
-
-            {/* Image preview + upload */}
             <div className="flex flex-col items-center mb-4">
               {form.avatar ? (
                 <img
@@ -74,12 +72,12 @@ function Profile() {
                   className="w-24 h-24 rounded-full object-cover mb-2 border border-gray-300 shadow-sm"
                 />
               ) : (
-                <FaRegUserCircle size={96} className="text-yellow-400 mb-2" />
+                <FaRegUserCircle size={96} className="text-[#1ac5b0] mb-2" />
               )}
 
               <label
                 htmlFor="avatar-upload"
-                className="cursor-pointer bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-full text-sm transition"
+                className="cursor-pointer bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full text-sm transition"
               >
                 {form.avatar ? "Change Picture" : "Upload Picture"}
               </label>
