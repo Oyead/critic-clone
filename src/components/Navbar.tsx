@@ -65,7 +65,7 @@ function Navbar() {
       <div className="flex items-center space-x-2">
         <Link to="/">
           <img
-            src="/src/assets/gamepad.png"
+            src="src/assets/gamepad.png"
             alt="Logo"
             className="w-10 h-10 rounded-full cursor-pointer"
           />
