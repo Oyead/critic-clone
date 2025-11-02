@@ -23,7 +23,7 @@ const ContentSections: React.FC<GameSectionProps> = ({ title, images }) => {
   return (
     <section className="p-6">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-2xl font-bold text-gray-800">{title}</h2>
+        <h2 className="text-2xl font-bold text-[#001219]">{title}</h2>
         <div className="flex space-x-2">
           <button onClick={() => scroll("left")} className="p-2 bg-gray-200 rounded-full hover:bg-yellow-400 cursor-pointer">
             <FaChevronLeft />
