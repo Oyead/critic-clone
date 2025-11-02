@@ -21,8 +21,9 @@ function Home() {
 
   return (
     <>
-      <ContentSections title="Newly Released" images={newlyReleased} />
-      <ContentSections title="Highest Rated" images={highestRated} />
+    <div className="py-10">  <ContentSections title="Newly Released" images={newlyReleased} />
+      <ContentSections title="Highest Rated" images={highestRated} /></div>
+    
     </>
   );
 }
