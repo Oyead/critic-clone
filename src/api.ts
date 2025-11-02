@@ -28,3 +28,19 @@ export const getNewlyReleased = async () => {
       image: game.background_image,
     }));
 };
+export const getBestGamesLastDecade = async () => {
+  const res = await axios.get(
+    `${API_BASE}/games?key=${API_KEY}&dates=2010-01-01,2019-12-31&ordering=-metacritic&page_size=20`
+  );
+
+  console.log("RAWG API response:", res.data.results);
+
+  return res.data.results
+    .filter((game: any) => game.background_image && game.metacritic) // only games with images and Metacritic score
+    .map((game: any) => ({
+      id: game.id,
+      name: game.name,
+      image: game.background_image,
+      metacritic: game.metacritic,
+    }));
+};
