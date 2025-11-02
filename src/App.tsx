@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar"
 import LoginPage from "./components/LoginPage";
 import RegisterPage from "./components/RegisterPage";
 import Profile from "./components/Profile";
+import GameDetails from "./components/GameDetails"
 import ProtectedRoute from './ProtectedRoute';
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
+      <Route path="/game/:id" element={<GameDetails/>} />
+
       <Route
           path="/profile"
           element={
