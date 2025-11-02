@@ -57,7 +57,7 @@ const Explore: React.FC = () => {
       <h1 className="text-3xl font-bold mb-6">Best Games (2010–2019)</h1>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
         {/* Safelist all gradient classes so Tailwind generates them */}
-        <div className="hidden from-green-600 to-green-400 from-yellow-500 to-yellow-300 from-orange-500 to-orange-300 from-red-500 to-red-300"></div>
+        <div className="hidden "></div>
 
 {games.map((game: Game) => (
   <Link key={game.id} to={`/game/${game.id}`}>
