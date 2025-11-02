@@ -71,12 +71,9 @@ function Navbar() {
           />
         </Link>
         <div className="hidden md:flex space-x-6 ml-8">
-          <a href="#" className="text-gray-700 hover:text-yellow-800 font-medium">
-            Explore
-          </a>
-          <a href="#" className="text-gray-700 hover:text-yellow-800 font-medium">
-            Reviews
-          </a>
+<Link to="/explore">
+  Explore
+</Link>          
         </div>
       </div>
 
@@ -87,7 +84,7 @@ function Navbar() {
           placeholder="Search..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="w-[30%] lg:w-[60%] border border-gray-300 rounded-3xl px-4 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
+          className="w-[30%] lg:w-[60%] border border-gray-300 rounded-3xl px-4 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-[#1ac5b0]"
         />
         {showResults && results.length > 0 && (
           <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-white border border-gray-200 shadow-lg rounded-lg w-[60%] max-h-80 overflow-y-auto z-50">
@@ -117,39 +114,44 @@ function Navbar() {
       {!isLoggedIn ? (
         <div className="flex items-center space-x-4">
           <Link to="/login">
-            <button className="text-gray-700 hover:text-yellow-800 font-medium cursor-pointer">
+            <button className="text-gray-700 hover:text-[#1ac5b0] font-medium cursor-pointer">
               Login
             </button>
           </Link>
           <Link to="/register">
-            <button className="bg-black text-white px-4 py-2 rounded-full hover:bg-yellow-800 transition cursor-pointer">
+            <button className="bg-black text-white px-4 py-2 rounded-full hover:bg-[#1ac5b0] transition cursor-pointer">
               Register
             </button>
           </Link>
         </div>
       ) : (
         <div className="flex items-center space-x-4">
-          <p>Hello, {username}</p>
+          <p className="text-lg">Hello, {username}</p>
           <div className="relative" ref={dropdownRef}>
             {avatar ? (
               <img
                 src={avatar}
                 alt="User Avatar"
-                className="w-10 h-10 rounded-full object-cover cursor-pointer border-2 border-yellow-400"
+                className="w-13 h-13 rounded-full object-cover cursor-pointer border-2 border-[#1ac5b0]"
                 onClick={() => setDropList(!dropList)}
               />
             ) : (
               <FaRegUserCircle
                 size={40}
-                className="cursor-pointer text-yellow-300"
+                className="cursor-pointer text-[#1ac5b0]"
                 onClick={() => setDropList(!dropList)}
               />
             )}
             {dropList && (
               <div className="absolute top-full right-0 mt-1 bg-gray-100 rounded-lg shadow-lg w-40 p-2 z-50">
                 <Link to="/profile">
-                  <p className="text-gray-700 hover:text-yellow-800 cursor-pointer py-1">
+                  <p className="text-gray-700 hover:text-[#1ac5b0] cursor-pointer py-1">
                     Profile
+                  </p>
+                </Link>
+                <Link to="/reviews">
+                  <p className="text-gray-700 hover:text-[#1ac5b0] cursor-pointer py-1">
+                    My Reviews
                   </p>
                 </Link>
                 <button
