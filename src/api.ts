@@ -8,6 +8,7 @@ export const getHighestRated = async () => {
   return res.data.results
     .filter((game: any) => game.background_image)
     .map((game: any) => ({
+      id: game.id,
       name: game.name,
       image: game.background_image,
     }));
@@ -22,6 +23,7 @@ export const getNewlyReleased = async () => {
   return res.data.results
     .filter((game: any) => game.background_image)
     .map((game: any) => ({
+      id:game.id,
       name: game.name,
       image: game.background_image,
     }));
