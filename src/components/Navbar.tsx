@@ -70,11 +70,10 @@ function Navbar() {
             className="w-10 h-10 rounded-full cursor-pointer"
           />
         </Link>
-        <div className="hidden md:flex space-x-6 ml-8">
-<Link to="/explore">
-  Explore
-</Link>          
-        </div>
+<div className="flex space-x-6 ml-2 md:ml-8">
+  <Link to="/explore">Explore</Link>          
+</div>
+
       </div>
 
       {/* Middle: Search */}
