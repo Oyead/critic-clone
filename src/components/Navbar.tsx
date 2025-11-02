@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import type { RootState } from "../store/store";
 import axios from "axios";
-import logo from "../assets/gamepad.png";
 function Navbar() {
   const [dropList, setDropList] = useState(false);
   const [query, setQuery] = useState("");
@@ -65,8 +64,8 @@ function Navbar() {
       <div className="flex items-center space-x-2">
         <Link to="/">
           <img
-            src="src/assets/gamepad.png"
-            alt={logo}
+            src="/public/gamepad.png"
+            alt="Logo"
             className="w-10 h-10 rounded-full cursor-pointer"
           />
         </Link>
