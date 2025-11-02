@@ -1,11 +1,11 @@
 # critic‑clone
 
-A clone of the “Critic” movie review / rating platform built using **React**, **TypeScript**, and **Vite** — a modern and minimal setup for building a performant web app.
+A clone of the “Meta Critic” video game review / rating platform built using **React**, **TypeScript**, and **Vite** — a modern and minimal setup for building a performant web app.
 
 ---
 
 ## 📍 Live Demo  
-[https://cri/](https://critic-clone.vercel.app/)  
+[Click Here!](https://critic-clone.vercel.app/)  
 
 ---
 
