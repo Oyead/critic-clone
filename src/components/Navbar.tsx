@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import type { RootState } from "../store/store";
 import axios from "axios";
-
+import logo from "../assets/gamepad.png";
 function Navbar() {
   const [dropList, setDropList] = useState(false);
   const [query, setQuery] = useState("");
@@ -66,7 +66,7 @@ function Navbar() {
         <Link to="/">
           <img
             src="src/assets/gamepad.png"
-            alt="Logo"
+            alt={logo}
             className="w-10 h-10 rounded-full cursor-pointer"
           />
         </Link>
