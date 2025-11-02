@@ -2,9 +2,15 @@ import { useEffect, useState } from "react";
 import ContentSections from "./ContentSections";
 import { getHighestRated, getNewlyReleased } from "../api";
 
+interface Game {
+  id: number; // or number, depending on your API
+  name: string;
+  image: string;
+}
+
 function Home() {
-  const [highestRated, setHighestRated] = useState<{ name: string; image: string }[]>([]);
-  const [newlyReleased, setNewlyReleased] = useState<{ name: string; image: string }[]>([]);
+  const [highestRated, setHighestRated] = useState<Game[]>([]);
+  const [newlyReleased, setNewlyReleased] = useState<Game[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,11 +26,10 @@ function Home() {
   }, []);
 
   return (
-    <>
-    <div className="py-10">  <ContentSections title="Newly Released" images={newlyReleased} />
-      <ContentSections title="Highest Rated" images={highestRated} /></div>
-    
-    </>
+    <div className="py-10">
+      <ContentSections title="Newly Released" images={newlyReleased} />
+      <ContentSections title="Highest Rated" images={highestRated} />
+    </div>
   );
 }
 
