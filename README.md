@@ -5,7 +5,7 @@ A clone of the “Critic” movie review / rating platform built using **React**
 ---
 
 ## 📍 Live Demo  
-[https://critic-clone.vercel.app/](https://critic-clone.vercel.app/)  
+[https://cri/](https://critic-clone.vercel.app/)  
 
 ---
 
