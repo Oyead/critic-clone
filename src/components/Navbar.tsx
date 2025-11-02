@@ -18,32 +18,41 @@ function Navbar() {
     (state: RootState) => state.auth
   );
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const searchRef = useRef<HTMLDivElement | null>(null);
 
-  // Search handler
+  // Search API
   useEffect(() => {
-    const timeout = setTimeout(async () => {
-      if (query.trim().length > 2) {
-        const res = await axios.get(
-          `${API_BASE}/games?key=${API_KEY}&search=${query}&page_size=5`
-        );
-        setResults(res.data.results || []);
-        setShowResults(true);
-      } else {
-        setResults([]);
-        setShowResults(false);
-      }
-    }, 400);
-    return () => clearTimeout(timeout);
-  }, [query]);
+  const timeout = setTimeout(async () => {
+    if (query.trim().length > 2) {
+      const res = await axios.get(
+        `${API_BASE}/games?key=${API_KEY}&search=${query}&page_size=10`
+      );
 
-  // Close dropdown when clicking outside
+      // Sort locally: first by relevance (RAWG default), then by Metacritic descending
+      const ranked = res.data.results
+        .filter((game: any) => game.background_image)
+        .sort((a: any, b: any) => (b.metacritic || 0) - (a.metacritic || 0));
+
+      setResults(ranked);
+      setShowResults(true);
+    } else {
+      setResults([]);
+      setShowResults(false);
+    }
+  }, 400);
+  return () => clearTimeout(timeout);
+}, [query]);
+
+
+  // Close dropdowns when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
+      const target = event.target as Node;
+      if (dropdownRef.current && !dropdownRef.current.contains(target)) {
         setDropList(false);
+      }
+      if (searchRef.current && !searchRef.current.contains(target)) {
+        setShowResults(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -72,7 +81,7 @@ function Navbar() {
       </div>
 
       {/* Middle: Search */}
-      <div className="hidden md:flex flex-1 justify-center mx-6 relative">
+      <div ref={searchRef} className="hidden md:flex flex-1 justify-center mx-6 relative">
         <input
           type="text"
           placeholder="Search..."
@@ -120,7 +129,7 @@ function Navbar() {
         </div>
       ) : (
         <div className="flex items-center space-x-4">
-          {isLoggedIn && <p>Hello, {username}</p>}
+          <p>Hello, {username}</p>
           <div className="relative" ref={dropdownRef}>
             {avatar ? (
               <img
@@ -136,7 +145,6 @@ function Navbar() {
                 onClick={() => setDropList(!dropList)}
               />
             )}
-
             {dropList && (
               <div className="absolute top-full right-0 mt-1 bg-gray-100 rounded-lg shadow-lg w-40 p-2 z-50">
                 <Link to="/profile">
