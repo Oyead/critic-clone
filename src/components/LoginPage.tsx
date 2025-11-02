@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, FormEvent } from "react";
+import { useState } from "react";
+import type { FormEvent } from "react"; 
 import { useDispatch } from "react-redux";
 import { login } from "../features/authSlice";
 
