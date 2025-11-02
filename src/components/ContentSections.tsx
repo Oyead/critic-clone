@@ -5,6 +5,7 @@ import GameCard from "../components/gameCard";
 interface Game {
   name: string;
   image: string;
+  id:number
 }
 interface GameSectionProps {
   title: string;
